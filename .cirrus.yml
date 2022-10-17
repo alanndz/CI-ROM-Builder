@@ -1,0 +1,33 @@
+env:
+  RCLONECONFIG_DRIVE: "ENCRYPTED[8b0132d9b39ceff4d1861633d0bd2286387006e8dd91bf963b713c5a4e56873a594e62a6277461d9d49f5fab637630a2]"
+  TG_TOKEN: "ENCRYPTED[94c63810c2e6520e1fa2325dd563f3a20dcae1b3469da0751e240ba21fab2eee638eeb70ff5bd55b170db6acf71a5a92]"
+  TG_CHAT_ID: "ENCRYPTED[fa046d89a737bb617cc79a1ad03b59a49cd6081aa35ae3c91c73d6d3f2f8403376aa7fab0be95a4c1efdc6810b1310ba]"
+  WORKDIR: "/tmp"
+  EMAIL: "ENCRYPTED[502df1b73af6d9bee5d5b44ff1b4a4d7b9228137913f7ed80a523ac909b1e5d467bc2e282fefc05f593d4ec44e3bd256]"
+  CIRRUS_CLONE_DEPTH: "1"
+
+task:
+  name: "Setting Up, Syncing, Building and Uploading"
+  only_if: $CIRRUS_REPO_OWNER == 'NFS-Project'
+  timeout_in: 120m
+  container:
+    image: anggit86/ubuntu:22.04
+    cpu: 8
+    memory: 32G
+
+  Load-Ccache_background_script:
+     - ./script/load_ccache.sh
+
+  Sync-rom_script:
+     - ./script/sync.sh
+     
+  Build-rom_script:
+     - ./script/building.sh
+     
+  Ccache-info_script:
+     - set -e
+     - export CCACHE_DIR=$WORKDIR/ccache
+     - ccache -s
+
+  Upload-build_script:
+     - ./script/ziping.sh
