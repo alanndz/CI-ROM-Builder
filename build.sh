@@ -12,5 +12,5 @@ export KBUILD_BUILD_USER=rosy
 export KBUILD_BUILD_HOST=nfsproject
 export BUILD_USERNAME=rosy
 export BUILD_HOSTNAME=nfsproject
-mka bacon -j8
-# Switch to vanilla build
+progress |& mka bacon -j8
+# end

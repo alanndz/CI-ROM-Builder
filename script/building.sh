@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+source $CIRRUS_WORKING_DIR/config
+timeStart
 
 set -e
 name_rom=$(grep init $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d / -f 4)
@@ -13,6 +15,14 @@ export CCACHE_COMPRESS=true
 which ccache
 ccache -M 10
 ccache -z
+mkfifo reading
+tee "${BUILDLOG}" < reading &
+build_message "Staring bro...🔥"
+sleep 2
+build_message "🛠️ Building..."
 command=$(tail $CIRRUS_WORKING_DIR/build.sh -n +$(expr $(grep '# build rom' $CIRRUS_WORKING_DIR/build.sh -n | cut -f1 -d:) - 1)| head -n -1 | grep -v '# end')
-bash -c "$command" |& tee -a $WORKDIR/rom/$name_rom/build.log || true #& sleep 95m
+bash -c "$command" |& tee -a $WORKDIR/rom/$name_rom/build.log || true & sleep 95m
 bash $CIRRUS_WORKING_DIR/script/check_build.sh
+retVal=$?
+timeEnd
+statusBuild
