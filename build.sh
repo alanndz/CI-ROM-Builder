@@ -4,7 +4,7 @@ git clone https://github.com/NFS-Project/local_manifest --depth 1 -b rosy-PE-plu
 repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
 
 # build rom
-source $CIRRUS_WORKING_DIR/script/configconfig
+source $CIRRUS_WORKING_DIR/script/config
 timeStart
 
 source build/envsetup.sh
