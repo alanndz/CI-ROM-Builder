@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-source $CIRRUS_WORKING_DIR/config
+source $CIRRUS_WORKING_DIR/script/config
 timeStart
 
 set -e
