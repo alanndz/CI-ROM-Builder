@@ -111,7 +111,7 @@ progress() {
             if [[ "${NUMBER}" -le  "99" ]]; then
                 if [[ "${NUMBER}" != "${NUMBER_OLD}" ]] && [[ "$NUMBER" != "" ]] && ! cat $BUILDLOG | tail  -n 1 | grep "glob" > /dev/null && ! cat $BUILDLOG | tail  -n 1 | grep "including" > /dev/null && ! cat $BUILDLOG | tail  -n 1 | grep "soong" > /dev/null && ! cat $BUILDLOG | tail  -n 1 | grep "finishing" > /dev/null; then
                 echo -e "BOTLOG: Percentage changed to ${NUMBER}%"
-                    build_message "🛠️ Building... ${NUMBER}%💨" > /dev/null
+                    build_message "🛠️ Building... ${NUMBER}%🚀" > /dev/null
                 fi
             NUMBER_OLD=${NUMBER}
             fi
@@ -134,7 +134,7 @@ CI_MESSAGE_ID=$(tg_send_message --chat_id "$TG_CHAT_ID" --text "<b>=== Starting 
 <b>📟 Job:</b> $(nproc --all) Paralel processing
 <b>🗃 Penyimpanan:</b> 5TB
 <b>📈 Digunakan:</b> 54.32GB
-<b>📉 Tersisa:</b> 4638GB
+<b>📉 Tersisa:</b> 46.38GB
 <b>⏳ Running on:</b> $DISTRO
 <b>📅 Started at:</b> $DATE
 
@@ -146,7 +146,7 @@ tg_edit_message_text --chat_id "$TG_CHAT_ID" --message_id "$CI_MESSAGE_ID" --tex
 <b>📟 Job:</b> $(nproc --all) Paralel processing
 <b>🗃 Penyimpanan:</b> 5TB
 <b>📈 Digunakan:</b> 54.32GB
-<b>📉 Tersisa:</b> 4638GB
+<b>📉 Tersisa:</b> 46.38GB
 <b>⏳ Running on:</b> $DISTRO
 <b>📅 Started at:</b> $DATE
 

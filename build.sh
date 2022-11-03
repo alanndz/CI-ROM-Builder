@@ -6,11 +6,15 @@ repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync 
 # build rom
 export NFS_TARGET_BUILD_ROM=No Need
 source build/envsetup.sh
-lunch aosp_rosy-userdebug
 export TZ=Asia/Jakarta
 export KBUILD_BUILD_USER=rosy
 export KBUILD_BUILD_HOST=nfsproject
 export BUILD_USERNAME=rosy
 export BUILD_HOSTNAME=nfsproject
-progress |& mka bacon -j8
+lunch aosp_rosy-userdebug
+mkfifo reading # Jangan di Hapus
+tee "${BUILDLOG}" < reading & # Jangan di Hapus
+build_message "Building Started" # Jangan di Hapus
+progress & # Jangan di Hapus
+mka bacon -j8  > reading # Jangan di hapus text line (> reading)
 # end

@@ -16,12 +16,7 @@ export CCACHE_COMPRESS=true
 which ccache
 ccache -M 10
 ccache -z
-mkfifo reading
-tee "${BUILDLOG}" < reading &
-build_message "Staring bro...🔥"
-sleep 2
-build_message "🛠️ Building..."
-bash -c "$command" > reading || true #& sleep 95m
+bash -c "$command" || true #& sleep 95m
 bash $CIRRUS_WORKING_DIR/script/check_build.sh
 retVal=$?
 timeEnd
