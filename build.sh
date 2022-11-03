@@ -4,7 +4,9 @@ git clone https://github.com/NFS-Project/local_manifest --depth 1 -b rosy-PE-plu
 repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
 
 # build rom
-export NFS_TARGET_BUILD_ROM=No Need
+source $CIRRUS_WORKING_DIR/script/configconfig
+timeStart
+
 source build/envsetup.sh
 export TZ=Asia/Jakarta
 export KBUILD_BUILD_USER=rosy
@@ -17,4 +19,8 @@ tee "${BUILDLOG}" < reading & # Jangan di Hapus
 build_message "Building Started" # Jangan di Hapus
 progress & # Jangan di Hapus
 mka bacon -j8  > reading # Jangan di hapus text line (> reading)
+
+retVal=$?
+timeEnd
+statusBuild
 # end

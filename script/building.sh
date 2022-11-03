@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-source $CIRRUS_WORKING_DIR/script/config
-timeStart
 
 set -e
 name_rom=$(grep init $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d / -f 4)
@@ -18,6 +16,3 @@ ccache -M 10
 ccache -z
 bash -c "$command" || true #& sleep 95m
 bash $CIRRUS_WORKING_DIR/script/check_build.sh
-retVal=$?
-timeEnd
-statusBuild
