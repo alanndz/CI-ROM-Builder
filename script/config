@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 name_rom=$(grep init $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d / -f 4)
-device=$(grep lunch $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d ' ' -f 2 | cut -d _ -f 2 | cut -d - -f 1)
 branch_name=$(grep init $CIRRUS_WORKING_DIR/build.sh | awk -F "-b " '{print $2}' | awk '{print $1}')
 BUILDLOG=$WORKDIR/rom/$name_rom/build.log
 
@@ -130,7 +129,7 @@ build_message() {
 	if [ "$CI_MESSAGE_ID" = "" ]; then
 CI_MESSAGE_ID=$(tg_send_message --chat_id "$TG_CHAT_ID" --text "<b>=== Starting Build ${name_rom} ===</b>
 <b>🖥 Branch:</b> ${branch_name}
-<b>📱 Device:</b> ${device}
+<b>📱 Device:</b> $(grep lunch $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d ' ' -f 2 | cut -d _ -f 2 | cut -d - -f 1)
 <b>📟 Job:</b> $(nproc --all) Paralel processing
 <b>🗃 Penyimpanan:</b> 5TB
 <b>📈 Digunakan:</b> 54.32GB
@@ -142,7 +141,7 @@ CI_MESSAGE_ID=$(tg_send_message --chat_id "$TG_CHAT_ID" --text "<b>=== Starting 
 	else
 tg_edit_message_text --chat_id "$TG_CHAT_ID" --message_id "$CI_MESSAGE_ID" --text "<b>=== Starting Build ${name_rom} ===</b>
 <b>🖥 Branch:</b> ${branch_name}
-<b>📱 Device:</b> ${device}
+<b>📱 Device:</b> $(grep lunch $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d ' ' -f 2 | cut -d _ -f 2 | cut -d - -f 1)
 <b>📟 Job:</b> $(nproc --all) Paralel processing
 <b>🗃 Penyimpanan:</b> 5TB
 <b>📈 Digunakan:</b> 54.32GB
