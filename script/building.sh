@@ -12,7 +12,7 @@ export CCACHE_EXEC=$(which ccache)
 export USE_CCACHE=1
 export CCACHE_COMPRESS=true
 which ccache
-ccache -M 10
+ccache -M 20
 ccache -z
-bash -c "$command" || true #& sleep 95m
+bash -c "$command" || true & sleep 95m
 bash $CIRRUS_WORKING_DIR/script/check_build.sh
