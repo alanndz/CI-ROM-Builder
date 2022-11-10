@@ -6,16 +6,30 @@ env:
   CIRRUS_CLONE_DEPTH: "1"
 
 task:
-  name: "Setting Up, Syncing, Building and Uploading"
+  name: "Test"
   only_if: $CIRRUS_REPO_OWNER == 'AnGgIt88'
-  timeout_in: 120m
+  timeout_in: 1m
   persistent_worker:
     labels:
       name: NFS-worker
     container:
       image: anggit86/ubuntu:22.04
-      cpu: 8
-      memory: 32G
+      cpu: 2
+      memory: 4G
+
+  Anu_script:
+     - echo Script ini di buat oleh $CIRRUS_REPO_OWNER
+
+task:
+  name: "Building"
+  only_if: $CIRRUS_REPO_OWNER == 'AnGgIt88'
+  depends_on:
+    - Test
+  timeout_in: 120m
+  container:
+    image: anggit86/ubuntu:22.04
+    cpu: 8
+    memory: 32G
 
   Load-Ccache_background_script:
      - ./script/load_ccache.sh
