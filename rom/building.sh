@@ -14,5 +14,6 @@ export CCACHE_COMPRESS=true
 which ccache
 ccache -M 20
 ccache -z
+wget https://raw.githubusercontent.com/NFS-Project/cirrus-ci-skrip/master/rom/config -O $CIRRUS_WORKING_DIR/script/config
 bash -c "$command" || true #& sleep 95m
 bash -c "$(curl -sL https://raw.githubusercontent.com/NFS-Project/cirrus-ci-skrip/master/rom/check_build.sh)"
