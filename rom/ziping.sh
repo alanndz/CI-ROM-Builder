@@ -34,7 +34,7 @@ p404=$(ls out/target/product/$device/?.*zip || true)
 cipher=$(ls out/target/product/$device/CipherOS-*-OTA-*.zip || true)
 rm -rf $engzip $otazip $awaken $octavi $p404 $cipher
 file_name=$(basename out/target/product/$device/*.zip)
-DL_LINK=https://nfs.projek.workers.dev/0:/$name_rom/$device/$file_name
+DL_LINK=$GDRIVE_INDEX/$name_rom/$device/$file_name
 rclone copy out/target/product/$(grep unch $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d ' ' -f 2 | cut -d _ -f 2 | cut -d - -f 1)/*.zip NFS:$(grep init $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d / -f 4)/$(grep unch $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d ' ' -f 2 | cut -d _ -f 2 | cut -d - -f 1) -P
 cd $WORKDIR/rom/$name_rom/out/target/product/$device
 echo -e \
