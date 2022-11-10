@@ -4,7 +4,7 @@ git clone https://github.com/NFS-Project/local_manifest --depth 1 -b rosy-SparkO
 repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
 
 # build rom
-source $CIRRUS_WORKING_DIR/script/config
+source $CIRRUS_WORKING_DIR/config
 timeStart
 
 source build/envsetup.sh

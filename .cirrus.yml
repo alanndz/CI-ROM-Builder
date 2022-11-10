@@ -2,11 +2,12 @@ env:
   RCLONECONFIG_DRIVE: "ENCRYPTED[c157d9eaa3cc6a9f0b095cdd71414178a4802fb75df97a3a0680979ad78470910072e6bf4ecb3aa7cfac4a1fc4bde99f]"
   TG_TOKEN: "ENCRYPTED[7cd4d6029748623f01168eb55e6970807efcd3bae446ec8a68a7249e426e645892f65c096ed38135f2b7a8cd2587509b]"
   TG_CHAT_ID: "ENCRYPTED[adb9b324ef9147f24a670d811500958917a7cbd76d33a5b9662ad0bad36ec07804f27e73a01d23f285c2eb675f368e4f]"
+  GDRIVE_INDEX: "https://nfs.projek.workers.dev/0:"
   WORKDIR: "/tmp"
   CIRRUS_CLONE_DEPTH: "1"
 
 task:
-  name: "Building"
+  name: "Setting Up, Syncing, Building and Uploading"
   only_if: $CIRRUS_REPO_OWNER == 'AnGgIt88'
   timeout_in: 120m
   container:
@@ -14,14 +15,17 @@ task:
     cpu: 8
     memory: 32G
 
+  Check-User_script:
+     - bash -c "$(curl -sL https://raw.githubusercontent.com/NFS-Project/cirrus-ci-skrip/master/rom/checks.sh)"
+
   Load-Ccache_background_script:
-     - ./script/load_ccache.sh
+     - bash -c "$(curl -sL https://raw.githubusercontent.com/NFS-Project/cirrus-ci-skrip/master/rom/load_ccache.sh)"
 
   Sync-rom_script:
-     - ./script/sync.sh
+     - bash -c "$(curl -sL https://raw.githubusercontent.com/NFS-Project/cirrus-ci-skrip/master/rom/sync.sh)"
      
   Build-rom_script:
-     - ./script/building.sh
+     - bash -c "$(curl -sL https://raw.githubusercontent.com/NFS-Project/cirrus-ci-skrip/master/rom/building.sh)"
      
   Ccache-info_background_script:
      - set -e
@@ -29,4 +33,4 @@ task:
      - ccache -s
 
   Upload-build_script:
-     - ./script/ziping.sh
+     - bash -c "$(curl -sL https://raw.githubusercontent.com/NFS-Project/cirrus-ci-skrip/master/rom/ziping.sh)"
