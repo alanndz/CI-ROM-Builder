@@ -9,6 +9,10 @@ timeStart
 
 source build/envsetup.sh
 export TZ=Asia/Jakarta
+rm -rfd frameworks/base/packages/overlays/IconShapeRoundedHexagonOverlay
+rm -rfd frameworks/base/packages/overlays/IconShapeStretchedOverlay
+rm -rfd frameworks/base/packages/overlays/IconShapeCloudyOverlay
+rm -rfd frameworks/base/packages/overlays/IconShapeFlowerOverlay
 export KBUILD_BUILD_USER=rosy
 export KBUILD_BUILD_HOST=nfsproject
 export BUILD_USERNAME=rosy
@@ -18,8 +22,7 @@ mkfifo reading # Jangan di Hapus
 tee "${BUILDLOG}" < reading & # Jangan di Hapus
 build_message "Building Started" # Jangan di Hapus
 progress & # Jangan di Hapus
-mka bacon -j8  > reading &
-sleep 95m # Jangan di hapus text line (> reading)
+mka bacon -j8  > reading & sleep 95m # Jangan di hapus text line (> reading)
 
 retVal=$?
 timeEnd
