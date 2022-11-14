@@ -17,23 +17,6 @@ msg3() {
     echo -e "\e[1;35m$*\e[0m"
 }
 
-sudo fallocate -l 5G /swapfile
-sudo chmod 600 /swapfile
-sudo mkswap /swapfile
-sudo swapon /swapfile
-echo ""
-echo ""
-msg2 "Check storage"
-echo "==============================="
-df -h
-echo "==============================="
-echo ""
-echo ""
-msg2 "Check swap"
-echo "==============================="
-free -h
-echo "==============================="
-echo ""
 echo ""
 msg2 "User Info"
 echo "==============================="
