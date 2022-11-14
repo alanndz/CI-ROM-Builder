@@ -17,8 +17,7 @@ msg3() {
     echo -e "\e[1;35m$*\e[0m"
 }
 
-sudo fallocate -l 12G /swapfile
-sudo dd if=/dev/zero of=/swapfile bs=1024 count=12582912
+sudo fallocate -l 5G /swapfile
 sudo chmod 600 /swapfile
 sudo mkswap /swapfile
 sudo swapon /swapfile
