@@ -348,7 +348,7 @@ tg_edit_message_text --chat_id "$TG_CHAT_ID" --message_id "$CI_MESSAGE_ID" --tex
 <b>⏳ Running on:</b> $DISTRO
 <b>📅 Started at:</b> $DATE
 
-<b>⚙️ Status</b> ${1}
+<b>⚙️ Status:</b> ${1}
 ${2}" --parse_mode "html"
 	fi
 }
