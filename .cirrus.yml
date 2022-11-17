@@ -4,7 +4,6 @@ env:
 
 task:
   name: "Build"
-  stateful: true
   skip: $CIRRUS_BRANCH == 'master'
   only_if: $CIRRUS_REPO_OWNER == 'AnGgIt88'
   timeout_in: 120m
