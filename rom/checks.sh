@@ -48,6 +48,11 @@ msg "Devices = $device"
 echo "==============================="
 echo ""
 echo ""
+echo "==============================="
+if [[ $CIRRUS_COMMIT_MESSAGE == "Update build_rom.sh" ]]; then msg2 Tulis lah nama commit nya, Males bener.; exit 1; fi; 
+echo "==============================="
+echo ""
+echo ""
 msg2 "🔐 Notes"
 echo "==============================="
 msg3 "Untuk bisa menjadi bagian dari Team kami,
