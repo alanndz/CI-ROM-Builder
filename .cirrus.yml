@@ -3,7 +3,7 @@ env:
   CIRRUS_CLONE_DEPTH: "1"
 
 task:
-  name: "Build"
+  name: "Setting Up, Syncing, Building and Uploading"
   skip: $CIRRUS_BRANCH == 'master'
   only_if: $CIRRUS_REPO_OWNER == 'AnGgIt88'
   timeout_in: 120m
