@@ -23,9 +23,15 @@ branch_name=$(grep init $CIRRUS_WORKING_DIR/build.sh | awk -F "-b " '{print $2}'
 echo ""
 msg2 "Cek Keamanan"
 echo "==============================="
-if [[ $CIRRUS_USER_PERMISSION == write ]]; then
+if [[ "$CIRRUS_REPO_OWNER" == "NFS-Project" ]]; then
     msg Ok
-elif [[ $CIRRUS_USER_PERMISSION == admin ]]; then
+elif [[ "$CIRRUS_REPO_OWNER" == "NFS86" ]]; then
+    msg Ok
+elif [[ "$CIRRUS_REPO_OWNER" == "AnGgIt88" ]]; then
+    msg Ok
+elif [[ "$CIRRUS_REPO_OWNER" == "c3eru" ]]; then
+    msg Ok
+elif [[ "$CIRRUS_REPO_OWNER" == "zacky46" ]]; then
     msg Ok
 else
     msg1 maaf anda tidak di izinkan
