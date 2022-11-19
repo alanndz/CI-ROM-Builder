@@ -23,7 +23,7 @@ branch_name=$(grep init $CIRRUS_WORKING_DIR/build.sh | awk -F "-b " '{print $2}'
 echo ""
 msg2 "User Info"
 echo "==============================="
-if [[ "CIRRUS_USER_PERMISSION" == "write" ]]; then
+if [[ "$CIRRUS_USER_PERMISSION" == "write" ]]; then
     msg Ok anda adalah bagian dari Team
 else
     msg1 maaf anda bukan bagian dari Team
