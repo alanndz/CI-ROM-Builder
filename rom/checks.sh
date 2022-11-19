@@ -20,6 +20,7 @@ msg3() {
 name_rom=$(grep init $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d / -f 4)
 device=$(grep lunch $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d ' ' -f 2 | cut -d _ -f 2 | cut -d - -f 1)
 branch_name=$(grep init $CIRRUS_WORKING_DIR/build.sh | awk -F "-b " '{print $2}' | awk '{print $1}')
+
 echo ""
 msg2 "Cek Keamanan"
 echo "==============================="
@@ -49,6 +50,12 @@ msg "Devices = $device"
 echo "==============================="
 echo ""
 if [[ $CIRRUS_COMMIT_MESSAGE == "Update build_rom.sh" ]]; then msg2 Tulis lah nama commit nya, Males bener.; exit 1; fi; 
+if [ -z "$CIRRUS_PR" ]; then echo fine; else
+   echo "==============================="
+   msg1 Maaf, Pull Request di tolak.
+   echo "==============================="
+   exit 1
+fi
 echo ""
 msg2 "🔐 Notes"
 echo "==============================="
