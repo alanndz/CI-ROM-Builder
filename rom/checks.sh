@@ -23,18 +23,10 @@ branch_name=$(grep init $CIRRUS_WORKING_DIR/build.sh | awk -F "-b " '{print $2}'
 echo ""
 msg2 "User Info"
 echo "==============================="
-if [[ "$CIRRUS_REPO_OWNER" == "NFS-Project" ]]; then
-    msg $CIRRUS_REPO_OWNER Ok anda adalah bagian dari Team
-elif [[ "$CIRRUS_REPO_OWNER" == "NFS86" ]]; then
-    msg $CIRRUS_REPO_OWNER Ok anda adalah bagian dari Team
-elif [[ "$CIRRUS_REPO_OWNER" == "AnGgIt88" ]]; then
-    msg $CIRRUS_REPO_OWNER Ok anda adalah bagian dari Team
-elif [[ "$CIRRUS_REPO_OWNER" == "c3eru" ]]; then
-    msg $CIRRUS_REPO_OWNER Ok anda adalah bagian dari Team
-elif [[ "$CIRRUS_REPO_OWNER" == "zacky46" ]]; then
-    msg $CIRRUS_REPO_OWNER Ok anda adalah bagian dari Team
+if [[ "CIRRUS_USER_PERMISSION" == "write" ]]; then
+    msg Ok anda adalah bagian dari Team
 else
-    msg1 $CIRRUS_REPO_OWNER maaf anda bukan bagian dari Team
+    msg1 maaf anda bukan bagian dari Team
     exit 1
 fi
 echo "==============================="
