@@ -21,14 +21,14 @@ name_rom=$(grep init $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d / -f 4)
 device=$(grep lunch $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d ' ' -f 2 | cut -d _ -f 2 | cut -d - -f 1)
 branch_name=$(grep init $CIRRUS_WORKING_DIR/build.sh | awk -F "-b " '{print $2}' | awk '{print $1}')
 echo ""
-msg2 "User Info"
+msg2 "Cek Keamanan"
 echo "==============================="
 if [[ $CIRRUS_USER_PERMISSION == write ]]; then
-    msg Ok anda adalah bagian dari Team
+    msg Ok
 elif [[ $CIRRUS_USER_PERMISSION == admin ]]; then
-    msg Ok anda adalah admin Team
+    msg Ok
 else
-    msg1 maaf anda bukan bagian dari Team
+    msg1 maaf anda tidak di izinkan
     echo "==============================="
     exit 1
 fi
