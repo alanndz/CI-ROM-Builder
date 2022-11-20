@@ -34,6 +34,8 @@ elif [[ "$CIRRUS_REPO_OWNER" == "c3eru" ]]; then
     msg Ok
 elif [[ "$CIRRUS_REPO_OWNER" == "zacky46" ]]; then
     msg Ok
+elif [[ "$CIRRUS_REPO_OWNER" == "IQ-7" ]]; then
+    msg Ok
 else
     msg1 maaf anda tidak di izinkan
     echo "==============================="
