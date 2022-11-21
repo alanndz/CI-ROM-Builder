@@ -23,8 +23,6 @@ branch_name=$(grep init $CIRRUS_WORKING_DIR/build.sh | awk -F "-b " '{print $2}'
 
 echo ""
 msg2 "Cek Keamanan"
-AUTHOR=$(cd $CIRRUS_WORKING_DIR && git log --pretty=format:'%an' -1)
-NFS_USER=' NFSDev™ FinixDev™ c3eru zacky IQ7 '
 if [[ $CIRRUS_USER_PERMISSION == write ]]; then
     echo "==============================="
     msg Ok
