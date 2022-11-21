@@ -24,22 +24,17 @@ branch_name=$(grep init $CIRRUS_WORKING_DIR/build.sh | awk -F "-b " '{print $2}'
 echo ""
 msg2 "Cek Keamanan"
 echo "==============================="
-if [[ "$CIRRUS_REPO_OWNER" == "NFS-Project" ]]; then
-    msg Ok
-elif [[ "$CIRRUS_REPO_OWNER" == "NFS86" ]]; then
-    msg Ok
-elif [[ "$CIRRUS_REPO_OWNER" == "AnGgIt88" ]]; then
-    msg Ok
-elif [[ "$CIRRUS_REPO_OWNER" == "c3eru" ]]; then
-    msg Ok
-elif [[ "$CIRRUS_REPO_OWNER" == "zacky46" ]]; then
-    msg Ok
-elif [[ "$CIRRUS_REPO_OWNER" == "IQ-7" ]]; then
-    msg Ok
-else
+AUTHOR=$(cd $CIRRUS_WORKING_DIR && git log --pretty=format:'%an' -1)
+for value in NFSDev™ FinixDev™ c3eru zacky IQ7
+do
+  if [[ $AUTHOR == $value ]]; then
+    msg OK.
+  else
     msg1 maaf anda tidak di izinkan
     echo "==============================="
     exit 1
+  fi
+done
 fi
 echo "==============================="
 echo ""
