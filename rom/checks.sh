@@ -51,6 +51,16 @@ msg "Branch = $branch_name"
 msg "Devices = $device"
 echo "==============================="
 echo ""
+if [[ "$CIRRUS_USER_PERMISSION" == "admin" ]]; then
+    echo "==============================="
+    msg Anda adalah admin, Anda bebas mwlakukan apa saja.
+    echo "==============================="
+fi
+if [[ "$CIRRUS_USER_PERMISSION" == "write" ]]; then
+    echo "==============================="
+    msg2 Anda adalah user dengan izin menulis saja, Mungkin tindakan anda sedikit di batasi.
+    echo "==============================="
+fi
 if [[ $CIRRUS_COMMIT_MESSAGE == "Update build_rom.sh" ]]; then msg2 Tulis lah nama commit nya, Males bener.; exit 1; fi; 
 if [ -z "$CIRRUS_PR" ]; then echo fine; else
    echo "==============================="
