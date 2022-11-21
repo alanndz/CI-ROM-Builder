@@ -23,19 +23,18 @@ branch_name=$(grep init $CIRRUS_WORKING_DIR/build.sh | awk -F "-b " '{print $2}'
 
 echo ""
 msg2 "Cek Keamanan"
-echo "==============================="
 AUTHOR=$(cd $CIRRUS_WORKING_DIR && git log --pretty=format:'%an' -1)
-for value in NFSDev™ FinixDev™ c3eru zacky IQ7
-do
-  if [[ $AUTHOR == $value ]]; then
-    msg OK.
-  else
+NFS_USER=' NFSDev™ FinixDev™ c3eru zacky IQ7 '
+if [[ $NFS_USER != $AUTHOR ]]; then
+    echo "==============================="
     msg1 maaf anda tidak di izinkan
     echo "==============================="
     exit 1
-  fi
-done
-echo "==============================="
+else
+    echo "==============================="
+    msg Ok
+    echo "==============================="
+fi
 echo ""
 echo ""
 msg2 "Building Rom Information"
@@ -56,7 +55,7 @@ if [[ "$CIRRUS_USER_PERMISSION" == "write" ]]; then
     echo "==============================="
 fi
 if [[ $CIRRUS_COMMIT_MESSAGE == "Update build_rom.sh" ]]; then msg2 Tulis lah nama commit nya, Males bener.; exit 1; fi; 
-if [ -z "$CIRRUS_PR" ]; then echo fine; else
+if [ -z "$CIRRUS_PR" ]; then; else
    echo "==============================="
    msg1 Maaf, Pull Request di tolak.
    echo "==============================="
