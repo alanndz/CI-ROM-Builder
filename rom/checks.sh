@@ -48,7 +48,7 @@ echo "==============================="
 echo ""
 if [[ "$CIRRUS_USER_PERMISSION" == "admin" ]]; then
     echo "==============================="
-    msg Anda adalah admin, Anda bebas mwlakukan apa saja.
+    msg Anda adalah admin, Anda bebas melakukan apa saja.
     echo "==============================="
 fi
 if [[ "$CIRRUS_USER_PERMISSION" == "write" ]]; then
