@@ -59,7 +59,11 @@ if [[ "$CIRRUS_USER_PERMISSION" == "write" ]]; then
     echo "==============================="
 fi
 if [[ $CIRRUS_COMMIT_MESSAGE == "Update build_rom.sh" ]]; then msg2 Tulis lah nama commit nya, Males bener.; exit 1; fi; 
-if [ -z "$CIRRUS_PR" ]; then; else
+if [ -z "$CIRRUS_PR" ]; then
+   echo "==============================="
+   msg Builder By Team
+   echo "==============================="
+else
    echo "==============================="
    msg1 Maaf, Pull Request di tolak.
    echo "==============================="
