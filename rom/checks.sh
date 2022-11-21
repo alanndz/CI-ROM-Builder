@@ -25,15 +25,19 @@ echo ""
 msg2 "Cek Keamanan"
 AUTHOR=$(cd $CIRRUS_WORKING_DIR && git log --pretty=format:'%an' -1)
 NFS_USER=' NFSDev™ FinixDev™ c3eru zacky IQ7 '
-if [[ $NFS_USER != *" $AUTHOR "* ]]; then
+if [[ $CIRRUS_USER_PERMISSION == write ]]; then
+    echo "==============================="
+    msg Ok
+    echo "==============================="
+elif [[ $CIRRUS_USER_PERMISSION == admin ]]; then
+    echo "==============================="
+    msg Ok
+    echo "==============================="
+else
     echo "==============================="
     msg1 maaf anda tidak di izinkan
     echo "==============================="
     exit 1
-else
-    echo "==============================="
-    msg Ok
-    echo "==============================="
 fi
 echo ""
 echo ""
