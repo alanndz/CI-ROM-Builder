@@ -24,6 +24,7 @@ branch_name=$(grep init $CIRRUS_WORKING_DIR/build.sh | awk -F "-b " '{print $2}'
 echo ""
 msg2 "Cek Keamanan"
 echo "==============================="
+if
 AUTHOR=$(cd $CIRRUS_WORKING_DIR && git log --pretty=format:'%an' -1)
 for value in NFSDev™ FinixDev™ c3eru zacky IQ7
 do
