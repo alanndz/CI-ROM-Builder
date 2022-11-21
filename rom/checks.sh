@@ -25,7 +25,7 @@ echo ""
 msg2 "Cek Keamanan"
 AUTHOR=$(cd $CIRRUS_WORKING_DIR && git log --pretty=format:'%an' -1)
 NFS_USER=' NFSDev™ FinixDev™ c3eru zacky IQ7 '
-if [[ $NFS_USER != $AUTHOR ]]; then
+if [[ $NFS_USER != *" $AUTHOR "* ]]; then
     echo "==============================="
     msg1 maaf anda tidak di izinkan
     echo "==============================="
