@@ -23,13 +23,27 @@ branch_name=$(grep init $CIRRUS_WORKING_DIR/build.sh | awk -F "-b " '{print $2}'
 
 echo ""
 msg2 "Cek Keamanan"
-if [[ $CIRRUS_USER_PERMISSION == write ]]; then
+AUTHOR=$(cd $CIRRUS_WORKING_DIR && git log --pretty=format:'%an' -1)
+msg3 $AUTHOR
+if [[ $AUTHOR == NFSDev™ ]]; then
     echo "==============================="
-    msg Ok
+    msg OK
     echo "==============================="
-elif [[ $CIRRUS_USER_PERMISSION == admin ]]; then
+elif [[ $AUTHOR == FinixDev™ ]]; then
     echo "==============================="
-    msg Ok
+    msg OK
+    echo "==============================="
+elif [[ $AUTHOR == c3eru ]]; then
+    echo "==============================="
+    msg OK
+    echo "==============================="
+elif [[ $AUTHOR == zacky ]]; then
+    echo "==============================="
+    msg OK
+    echo "==============================="
+elif [[ $AUTHOR == IQ7 ]]; then
+    echo "==============================="
+    msg OK
     echo "==============================="
 else
     echo "==============================="
