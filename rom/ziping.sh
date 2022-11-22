@@ -57,7 +57,7 @@ echo -e \
 <b>📘 SHA1 :-</b> <code>"$(sha1sum *zip | cut -d' ' -f1)"</code>
 ━━━━━━━━━ஜ۩۞۩ஜ━━━━━━━━
 
-<b>🙇 By : "$CIRRUS_REPO_OWNER"</b>
+<b>👮 By : "$(cd $CIRRUS_WORKING_DIR && git log --pretty=format:'%an' -1)"</b>
 " > tg.html
 TG_TEXT=$(< tg.html)
 telegram_message "$TG_TEXT"
