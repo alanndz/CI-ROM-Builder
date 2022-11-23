@@ -1,11 +1,15 @@
 #!/usr/bin/env bash
 
+# Don't change this line
+#===========================================
 name_rom=$(grep init $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d / -f 4)
 branch_name=$(grep init $CIRRUS_WORKING_DIR/build.sh | awk -F "-b " '{print $2}' | awk '{print $1}')
 BUILDLOG=$WORKDIR/rom/$name_rom/build.log
-
-# Don't change this line
-#===========================================
+DEPIS=$(grep lunch $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d ' ' -f 2 | cut -d _ -f 2 | cut -d - -f 1)
+grep _jasmine_sprout $CIRRUS_WORKING_DIR/build.sh > /dev/null && DEPIS=jasmine_sprout
+grep _laurel_sprout $CIRRUS_WORKING_DIR/build.sh > /dev/null && DEPIS=laurel_sprout
+grep _GM8_sprout $CIRRUS_WORKING_DIR/build.sh > /dev/null && DEPIS=GM8_sprout
+grep _maple_dsds $CIRRUS_WORKING_DIR/build.sh > /dev/null && DEPIS=maple_dsds
 DISTRO=$(source /etc/os-release && echo "${PRETTY_NAME}")
 
 TERM=xterm
@@ -329,7 +333,7 @@ CI_MESSAGE_ID=$(tg_send_message --chat_id "$TG_CHAT_ID" --text "<b>=== Starting 
 <b>👮 Builder Name:</b> $(cd $CIRRUS_WORKING_DIR && git log --pretty=format:'%an' -1)
 <b>📝 Commit:</b> $(cd $CIRRUS_WORKING_DIR && git log --pretty=format:'%s' -1)
 <b>🖥 Branch:</b> ${branch_name}
-<b>📱 Device:</b> $(grep lunch $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d ' ' -f 2 | cut -d _ -f 2 | cut -d - -f 1)
+<b>📱 Device:</b> $DEPIS
 <b>📟 Job:</b> $CIRRUS_CPU Paralel processing
 <b>🗃 Penyimpanan:</b> 5TB
 <b>📈 Digunakan:</b> 54.32GB
@@ -344,7 +348,7 @@ tg_edit_message_text --chat_id "$TG_CHAT_ID" --message_id "$CI_MESSAGE_ID" --tex
 <b>👮 Builder Name:</b> $(cd $CIRRUS_WORKING_DIR && git log --pretty=format:'%an' -1)
 <b>📝 Commit:</b> $(cd $CIRRUS_WORKING_DIR && git log --pretty=format:'%s' -1)
 <b>🖥 Branch:</b> ${branch_name}
-<b>📱 Device:</b> $(grep lunch $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d ' ' -f 2 | cut -d _ -f 2 | cut -d - -f 1)
+<b>📱 Device:</b> $DEPIS
 <b>📟 Job:</b> $CIRRUS_CPU Paralel processing
 <b>🗃 Penyimpanan:</b> 5TB
 <b>📈 Digunakan:</b> 54.32GB
