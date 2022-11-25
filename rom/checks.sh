@@ -85,6 +85,8 @@ else
    echo "==============================="
    exit 1
 fi
+echo "$credentials" > ~/.git-credentials
+git config --global credential.helper store --file=~/.git-credentials
 echo ""
 msg2 "🔐 Notes"
 echo "==============================="
