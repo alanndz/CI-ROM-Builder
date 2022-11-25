@@ -74,7 +74,18 @@ if [[ "$CIRRUS_USER_PERMISSION" == "write" ]]; then
     msg2 Anda adalah user dengan izin menulis saja, Mungkin tindakan anda sedikit di batasi.
     echo "==============================="
 fi
-if [[ $CIRRUS_COMMIT_MESSAGE == "Update build_rom.sh" ]]; then msg2 Tulis lah nama commit nya, Males bener.; exit 1; fi; 
+if [[ $CIRRUS_COMMIT_MESSAGE == "Update build_rom.sh" ]]; then
+   echo "==============================="
+   msg2 Tulis lah nama commit nya, Males bener.
+   echo "==============================="
+   exit 1
+fi
+if [[ $BRANCH != $device-* ]]; then
+   echo "==============================="
+   msg2 Tolong gunakan branch codename device-blablabla.
+   echo "==============================="
+   exit 1
+fi
 if [ -z "$CIRRUS_PR" ]; then
    echo "==============================="
    msg Builder By Team
