@@ -49,6 +49,10 @@ elif [[ $AUTHOR == IQ7 ]]; then
     echo "==============================="
     msg OK
     echo "==============================="
+elif [[ $AUTHOR == ryanzsz ]]; then
+    echo "==============================="
+    msg OK
+    echo "==============================="
 else
     echo "==============================="
     msg1 maaf anda tidak di izinkan
