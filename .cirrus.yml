@@ -8,7 +8,7 @@ task:
   only_if: $CIRRUS_USER_PERMISSION == 'admin'
   stateful: true
   timeout_in: 120m
-  arm_container:
+  container:
     image: anggit86/ubuntu:22.04
     cpu: 8
     memory: 32G
