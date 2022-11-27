@@ -8,13 +8,10 @@ task:
   only_if: $CIRRUS_USER_PERMISSION == 'admin'
   stateful: true
   timeout_in: 120m
-  persistent_worker:
-    labels:
-      name: ZenBook-UX5401
-    container:
-      image: anggit86/ubuntu:22.04
-      cpu: 8
-      memory: 32G
+  arm_container:
+    image: anggit86/ubuntu:22.04
+    cpu: 8
+    memory: 32G
 
   Check-User_script:
      - bash -c "$(curl -sL https://raw.githubusercontent.com/NFS-Project/cirrus-ci-skrip/master/rom/checks.sh)"
