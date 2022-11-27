@@ -11,11 +11,10 @@ task:
   persistent_worker:
     labels:
       name: ZenBook-UX5401
-    isolation:
-      container:
-        image: anggit86/ubuntu:22.04
-        cpu: 8
-        memory: 32G
+    container:
+      image: anggit86/ubuntu:22.04
+      cpu: 8
+      memory: 32G
 
   Check-User_script:
      - bash -c "$(curl -sL https://raw.githubusercontent.com/NFS-Project/cirrus-ci-skrip/master/rom/checks.sh)"
