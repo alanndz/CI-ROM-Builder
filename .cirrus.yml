@@ -11,10 +11,11 @@ task:
   persistent_worker:
     labels:
       name: ZenBook-UX5401
-    container:
-      image: anggit86/ubuntu:22.04
-      cpu: 8
-      memory: 32G
+    isolation:
+      container:
+        image: anggit86/ubuntu:22.04
+        cpu: 8
+        memory: 32G
 
   Check-User_script:
      - nproc
