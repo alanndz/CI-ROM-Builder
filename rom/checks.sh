@@ -49,7 +49,7 @@ elif [[ $AUTHOR == IQ7 ]]; then
     echo "==============================="
     msg OK
     echo "==============================="
-elif [[ $AUTHOR == ryanzsz ]]; then
+elif [[ $AUTHOR == chalkzonez ]]; then
     echo "==============================="
     msg OK
     echo "==============================="
