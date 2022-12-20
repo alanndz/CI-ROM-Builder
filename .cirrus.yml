@@ -1,7 +1,3 @@
-env:
-  WORKDIR: "/tmp"
-  CIRRUS_CLONE_DEPTH: "1"
-
 task:
   name: "Admin Builder"
   skip: $CIRRUS_BRANCH == 'master'
