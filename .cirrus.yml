@@ -13,6 +13,15 @@ task:
      - nproc
      - bash -c "$(curl -sL https://raw.githubusercontent.com/NFS-Project/cirrus-ci-skrip/master/rom/checks.sh)"
 
+  SSH_background_script:
+     - mkdir -p -m 0700 /root/.ssh
+     - cd /root/.ssh
+     - curl $SSH_KEY -o id_rsa
+     - curl $PUB_KEY -o id_rsa.pub
+     - curl $KNOWN_HOSTS -o known_hosts
+     - chmod 0600 id_rsa
+     - chmod 0600 id_rsa.pub
+
   Memuat-Ccache_background_script:
      - bash -c "$(curl -sL https://raw.githubusercontent.com/NFS-Project/cirrus-ci-skrip/master/rom/load_ccache.sh)"
 
@@ -44,6 +53,15 @@ task:
   Cek-Pengguna_script:
      - nproc
      - bash -c "$(curl -sL https://raw.githubusercontent.com/NFS-Project/cirrus-ci-skrip/master/rom/checks.sh)"
+
+  SSH_background_script:
+     - mkdir -p -m 0700 /root/.ssh
+     - cd /root/.ssh
+     - curl $SSH_KEY -o id_rsa
+     - curl $PUB_KEY -o id_rsa.pub
+     - curl $KNOWN_HOSTS -o known_hosts
+     - chmod 0600 id_rsa
+     - chmod 0600 id_rsa.pub
 
   Memuat-Ccache_background_script:
      - bash -c "$(curl -sL https://raw.githubusercontent.com/NFS-Project/cirrus-ci-skrip/master/rom/load_ccache.sh)"
