@@ -1,24 +1,25 @@
-#sync rom
-repo init --depth=1 --no-repo-verify -u https://github.com/Project-Xtended/manifest.git -b xt -g default,-mips,-darwin,-notdefault
-git clone https://github.com/NFS-Project/local_manifest --depth 1 -b rosy-Xtended-13 .repo/local_manifests
-repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
+# sync rom
+repo init --depth=1 --no-repo-verify -u https://github.com/Evolution-X/manifest.git -b tiramisu -g default,-mips,-darwin,-notdefault
+repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j16
+git clone --depth=1 https://github.com/parikk/device_xiaomi_lmi.git -b 13-evox device/xiaomi/lmi
+git clone --depth=1 https://github.com/parikk/vendor_xiaomi_lmi.git -b 13-evox vendor/xiaomi/lmi
+git clone --depth=1 https://github.com/ProjectElixir-Devices/kernel_xiaomi_lmi.git -b zen_plus-13 kernel/xiaomi/lmi
+git clone --depth=1 https://gitlab.com/Roxor-007/WeebX_clang16.git -b main prebuilts/clang/host/linux-x86/clang-weebx
 
 # build rom
-source $CIRRUS_WORKING_DIR/config
+source $CIRRUS_WORKING_DIR/script/config
 timeStart
 
-source build/envsetup.sh
-export TZ=Asia/Jakarta
-export KBUILD_BUILD_USER=rosy
-export KBUILD_BUILD_HOST=nfsproject
-export BUILD_USERNAME=rosy
-export BUILD_HOSTNAME=nfsproject
-lunch xtended_rosy-userdebug
-mkfifo reading # Jangan di Hapus
-tee "${BUILDLOG}" < reading & # Jangan di Hapus
-build_message "Building Started" # Jangan di Hapus
-progress & # Jangan di Hapus
-timeout 95m make xtended -j8 > reading # Jangan di hapus text line (> reading)
+. build/envsetup.sh
+export BUILD_USERNAME=parikk
+export BUILD_HOSTNAME=parikk-build
+export EVO_BUILD_TYPE=OFFICIAL
+lunch evolution_lmi-user
+mkfifo reading
+tee "${BUILDLOG}" < reading &
+build_message "Building Started"
+progress &
+mka evolution -j16  > reading & sleep 95m
 
 retVal=$?
 timeEnd

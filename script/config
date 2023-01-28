@@ -6,10 +6,6 @@ name_rom=$(grep init $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d / -f 4)
 branch_name=$(grep init $CIRRUS_WORKING_DIR/build.sh | awk -F "-b " '{print $2}' | awk '{print $1}')
 BUILDLOG=$WORKDIR/rom/$name_rom/build.log
 DEPIS=$(grep lunch $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d ' ' -f 2 | cut -d _ -f 2 | cut -d - -f 1)
-grep _jasmine_sprout $CIRRUS_WORKING_DIR/build.sh > /dev/null && DEPIS=jasmine_sprout
-grep _laurel_sprout $CIRRUS_WORKING_DIR/build.sh > /dev/null && DEPIS=laurel_sprout
-grep _GM8_sprout $CIRRUS_WORKING_DIR/build.sh > /dev/null && DEPIS=GM8_sprout
-grep _maple_dsds $CIRRUS_WORKING_DIR/build.sh > /dev/null && DEPIS=maple_dsds
 DISTRO=$(source /etc/os-release && echo "${PRETTY_NAME}")
 
 TERM=xterm
@@ -335,12 +331,8 @@ CI_MESSAGE_ID=$(tg_send_message --chat_id "$TG_CHAT_ID" --text "<b>=== Starting 
 <b>🖥 Branch:</b> ${branch_name}
 <b>📱 Device:</b> $DEPIS
 <b>📟 Job:</b> $CIRRUS_CPU Paralel processing
-<b>🗃 Penyimpanan:</b> 5TB
-<b>📈 Digunakan:</b> 54.32GB
-<b>📉 Tersisa:</b> 46.38GB
 <b>⏳ Running on:</b> $DISTRO
 <b>📅 Started at:</b> $DATE
-
 <b>⚙️ Status:</b> ${1}
 ${2}" --parse_mode "html" | jq .result.message_id)
 	else
@@ -350,12 +342,8 @@ tg_edit_message_text --chat_id "$TG_CHAT_ID" --message_id "$CI_MESSAGE_ID" --tex
 <b>🖥 Branch:</b> ${branch_name}
 <b>📱 Device:</b> $DEPIS
 <b>📟 Job:</b> $CIRRUS_CPU Paralel processing
-<b>🗃 Penyimpanan:</b> 5TB
-<b>📈 Digunakan:</b> 54.32GB
-<b>📉 Tersisa:</b> 46.38GB
 <b>⏳ Running on:</b> $DISTRO
 <b>📅 Started at:</b> $DATE
-
 <b>⚙️ Status:</b> ${1}
 ${2}" --parse_mode "html"
 	fi
@@ -364,7 +352,6 @@ ${2}" --parse_mode "html"
 statusBuild() {
     if [[ $retVal -eq 8 ]]; then
         build_message "Build Aborted 😡 with Code Exit ${retVal}.
-
 Total time elapsed: $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) seconds."
         tg_send_message --chat_id "$TG_CHAT_ID_SECOND" --text "Build Aborted 💔 with Code Exit ${retVal}.
 Sudah kubilang yang teliti 😡"
@@ -377,7 +364,6 @@ Sudah kubilang yang teliti 😡"
     fi
     if [[ $retVal -eq 141 ]]; then
         build_message "Build Aborted 👎 with Code Exit ${retVal}, See log.
-
 Total time elapsed: $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) seconds."
         tg_send_message --chat_id "$TG_CHAT_ID_SECOND" --text "Build Aborted ❌ with Code Exit ${retVal}."
         echo "Build Aborted"
@@ -389,7 +375,6 @@ Total time elapsed: $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) seconds."
     fi
     if [[ $retVal -ne 0 ]]; then
         build_message "Build Error ❌ with Code Exit ${retVal}, See log.
-
 Total time elapsed: $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) seconds."
         tg_send_message --chat_id "$TG_CHAT_ID_SECOND" --text "Build Error ❌ with Code Exit ${retVal}."
         echo "Build Error"

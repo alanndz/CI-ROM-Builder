@@ -13,10 +13,6 @@ telegram_message() {
 
 function enviroment() {
 device=$(grep lunch $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d ' ' -f 2 | cut -d _ -f 2 | cut -d - -f 1)
-grep _jasmine_sprout $CIRRUS_WORKING_DIR/build.sh > /dev/null && device=jasmine_sprout
-grep _laurel_sprout $CIRRUS_WORKING_DIR/build.sh > /dev/null && device=laurel_sprout
-grep _GM8_sprout $CIRRUS_WORKING_DIR/build.sh > /dev/null && device=GM8_sprout
-grep _maple_dsds $CIRRUS_WORKING_DIR/build.sh > /dev/null && device=maple_dsds
 name_rom=$(grep init $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d / -f 4)
 file_name=$(cd $WORKDIR/rom/$name_rom/out/target/product/$device && ls *.zip)
 branch_name=$(grep init $CIRRUS_WORKING_DIR/build.sh | awk -F "-b " '{print $2}' | awk '{print $1}')
@@ -38,13 +34,12 @@ p404=$(ls out/target/product/$device/?.*zip || true)
 cipher=$(ls out/target/product/$device/CipherOS-*-OTA-*.zip || true)
 rm -rf $engzip $otazip $awaken $octavi $p404 $cipher
 file_name=$(basename out/target/product/$device/*.zip)
-DL_LINK=https://sourceforge.net/projects/rom-builder/files/$device/$file_name/download
-rsync -vhcP out/target/product/$(grep unch $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d ' ' -f 2 | cut -d _ -f 2 | cut -d - -f 1)/*.zip -e "sshpass -p $sfpass ssh -o Compression=no" $sfusername@frs.sourceforge.net:/home/frs/project/rom-builder/$device/
+DL_LINK=https://gdrive.parikk.workers.dev/$name_rom/$device/$file_name
+rclone copy out/target/product/$(grep unch $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d ' ' -f 2 | cut -d _ -f 2 | cut -d - -f 1)/*.zip drive:$(grep init $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d / -f 4)/$(grep unch $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d ' ' -f 2 | cut -d _ -f 2 | cut -d - -f 1) -P
 cd $WORKDIR/rom/$name_rom/out/target/product/$device
 echo -e \
 "
 <b>✅ Build Completed Successfully ✅</b>
-
 ━━━━━━━━━ஜ۩۞۩ஜ━━━━━━━━
 <b>🚀 Rom Name :- ${name_rom}</b>
 <b>📁 File Name :-</b> <code>"${file_name}"</code>
@@ -55,12 +50,9 @@ echo -e \
 <b>📥 Download Link :-</b> <a href=\"${DL_LINK}\">Here</a>
 <b>📅 Date :- "$(date +%d\ %B\ %Y)"</b>
 <b>🕔 Time Zone :- "$(date +%T)"</b>
-
-
 <b>📕 MD5 :-</b> <code>"$(md5sum *zip | cut -d' ' -f1)"</code>
 <b>📘 SHA1 :-</b> <code>"$(sha1sum *zip | cut -d' ' -f1)"</code>
 ━━━━━━━━━ஜ۩۞۩ஜ━━━━━━━━
-
 <b>👮 By : "$(cd $CIRRUS_WORKING_DIR && git log --pretty=format:'%an' -1)"</b>
 " > tg.html
 TG_TEXT=$(< tg.html)
@@ -82,7 +74,7 @@ com ()
   tar --use-compress-program="pigz -k -$2 " -cf $1.tar.gz $1
 }
 time com ccache 1
-rclone copy --drive-chunk-size 256M --stats 1s ccache.tar.gz NFS:ccache/$name_rom/$device -P
+rclone copy --drive-chunk-size 256M --stats 1s ccache.tar.gz drive:ccache/$name_rom/$device -P
 rm -rf ccache.tar.gz
 echo ━━━━━━━━━ஜ۩۞۩ஜ━━━━━━━━
 msg Upload ccache succes..
