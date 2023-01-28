@@ -1,9 +1,8 @@
 env:
 # ENCRYPTED
-  RCLONECONFIG_DRIVE: "ENCRYPTED[9862642b9ac317b97a2ac09417607a1bfacee633f861640ce84318f71d2bd6c5c3fc783b9831327888e7dfd52d8990ad]"
-  TG_TOKEN: "ENCRYPTED[9d701e0a6890996c088a82037cf199790eb05794261014e29104b9b494743fdf47a495f488ba4a3f836fa75c6786d96f]"
-  TG_CHAT_ID: "ENCRYPTED[277c6ba578c74658fe51e8092ae26e94564feb0400f3d79cc0bc6492a0204eb860b1b1e04650ab9bf0e91d66c956d88f]"
-  EMAIL: "ENCRYPTED[c22f821d2c81ea055615c34f29f77dfa023ba8a809702138ea2ae3dff093c3de50c7772d5fec94e3e55f82adf0e175a4]"
+  RCLONECONFIG_DRIVE: "ENCRYPTED[229fc20dfbecfe0684e3652d161aa0f19372ad5ca3c1e893d465f78424849192c722bb4733eaaed6a8da6f7e65ff4f8b]"
+  TG_TOKEN: "ENCRYPTED[50f9ef0674b3568c1b875d0995b2b05e26ec73c207751fc67608f303d64e9611fa62c1bdb986fccf7bd46c0b645caa88]"
+  TG_CHAT_ID: "ENCRYPTED[e478f3babe9556ad04c5ed1c7c6378c968439c9129f573466c2c3addd9ea933fa6c8f4b0fde47c0e41b82bd71f87337b]"
 
 # FLAG
   WORKDIR: "/tmp"
@@ -22,8 +21,8 @@ task:
      - ./script/load_ccache.sh
 
   Repo-pribadi_script:
-     - git config --global user.name "parikk"
-     - git config --global user.email "$EMAIL"
+     - git config --global user.name "ZenkaBestia"
+     - git config --global user.email "z.mail.6600@gmail.com"
 
   Sinkronasi-rom_script:
      - curl -s https://api.telegram.org/bot$TG_TOKEN/sendMessage -d chat_id=$TG_CHAT_ID -d text="Start sync Source"
