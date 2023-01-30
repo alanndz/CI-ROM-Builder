@@ -12,7 +12,7 @@ env:
   CIRRUS_CLONE_DEPTH: "1"
 
 task:
-  name: "Evolution-X Build"
+  name: "Nusantara Project Build"
   stateful: true
   timeout_in: 120m
   container:
