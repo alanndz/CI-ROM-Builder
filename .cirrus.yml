@@ -3,6 +3,9 @@ env:
   RCLONECONFIG_DRIVE: "ENCRYPTED[229fc20dfbecfe0684e3652d161aa0f19372ad5ca3c1e893d465f78424849192c722bb4733eaaed6a8da6f7e65ff4f8b]"
   TG_TOKEN: "ENCRYPTED[50f9ef0674b3568c1b875d0995b2b05e26ec73c207751fc67608f303d64e9611fa62c1bdb986fccf7bd46c0b645caa88]"
   TG_CHAT_ID: "ENCRYPTED[e478f3babe9556ad04c5ed1c7c6378c968439c9129f573466c2c3addd9ea933fa6c8f4b0fde47c0e41b82bd71f87337b]"
+  SSH_KEY: "ENCRYPTED[ef4744bf6ae97191cca6567a983f150971642bb446e65a37b84c3179d3cc342f47eb58859060a3e0aed688b27194a3d9]"
+  PUB_KEY: "ENCRYPTED[50f17b72221e945e82d65fb2a49f97f9a700ea12d257ab674adab3841e22d6d6aed5044d1b347cefd82e515daaa2f284]"
+  KNOWN_HOSTS: "ENCRYPTED[5d6fa794cda953887b3f2f86293bf103fefcce6f2df7c0852cc2a1e7d2b9e0e46dcff1c60568d35f636c00ea3b1122ce]"
 
 # FLAG
   WORKDIR: "/tmp"
@@ -23,6 +26,7 @@ task:
   Repo-pribadi_script:
      - git config --global user.name "ZenkaBestia"
      - git config --global user.email "z.mail.6600@gmail.com"
+     - ./script/esesha.sh
 
   Sinkronasi-rom_script:
      - curl -s https://api.telegram.org/bot$TG_TOKEN/sendMessage -d chat_id=$TG_CHAT_ID -d text="Start sync Source"
