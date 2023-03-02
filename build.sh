@@ -1,21 +1,22 @@
 # sync rom
-repo init --depth=1 --no-repo-verify -u ssh://git@github.com/Nusantara-ROM/android_manifest.git -b 13 -g default,-mips,-darwin,-notdefault
+repo init --depth=1 --no-repo-verify -u https://github.com/BiancaProject/android.git -b 13 -g default,-mips,-darwin,-notdefault
 repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j16
-git clone --depth=1 ssh://git@github.com/ZenkaBestia/device_xiaomi_lmi-a13.git -b 13-nad-sun device/xiaomi/lmi
-git clone --depth=1 ssh://git@github.com/ZenkaBestia/vendor_xiaomi_lmi-a13.git -b 13-nad-sun vendor/xiaomi/lmi
-git clone --depth=1 ssh://git@github.com/ZenkaBestia/kernel_xiaomi_lmi-a13.git -b zen_plus-13 kernel/xiaomi/lmi
+git clone --depth=1 https://alanndz:${PAT_KEY}@github.com/chaldeaprjkt/device_xiaomi_vayu -b 13-dudu device/xiaomi/vayu
+git clone --depth=1 https://alanndz:${PAT_KEY}@github.com/chaldeaprjkt/vendor_xiaomi_vayu -b 13-dudu vendor/xiaomi/vayu
+git clone --depth=1 https://github.com/aLnProject/device_xiaomi_vayu-kernel -b main device/xiaomi/vayu-kernel
+git clone --depth=1 https://alanndz:${PAT_KEY}@github.com/alanndz/certs -b main certs
 
 # build rom
 source $CIRRUS_WORKING_DIR/script/config
 timeStart
 
 . build/envsetup.sh
-lunch nad_lmi-user
+lunch vayu-user
 mkfifo reading
 tee "${BUILDLOG}" < reading &
 build_message "Building Started"
 progress &
-mka nad -j16  > reading & sleep 95m
+m dudu-sign -j16  > reading & sleep 95m
 
 retVal=$?
 timeEnd
