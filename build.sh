@@ -7,18 +7,9 @@ git clone --depth=1 https://github.com/aLnProject/device_xiaomi_vayu-kernel -b m
 git clone --depth=1 https://${PAT_KEY}@github.com/alanndz/certs -b main certs
 
 # build rom
-source $CIRRUS_WORKING_DIR/script/config
-timeStart
+curl -Lo barom.sh https://raw.githubusercontent.com/alanndz/barom/main/barom.sh
+chmod +x barom.sh
+./barom.sh -t ${TG_CHAT_ID} ${TG_TOKEN}
+./barom.sh -b -d vayu -l vayu-user -u wet --ccache-dir "${WORKDIR}/ccache" -u wet --timer 95m -j 8 -- m dudu-sign
 
-. build/envsetup.sh
-lunch vayu-user
-mkfifo reading
-tee "${BUILDLOG}" < reading &
-build_message "Building Started"
-progress &
-m dudu-sign -j16  > reading & sleep 95m
-
-retVal=$?
-timeEnd
-statusBuild
 # end
