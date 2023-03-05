@@ -2,7 +2,7 @@
 repo init --depth=1 --no-repo-verify -u https://github.com/BiancaProject/android.git -b 13 -g default,-mips,-darwin,-notdefault
 repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j16
 git clone --depth=1 https://${PAT_KEY}@github.com/chaldeaprjkt/device_xiaomi_whyred -b dudu_t44 device/xiaomi/whyred
-git clone --depth=1 https://${PAT_KEY}@github.com/chaldeaprjkt/vendor_xiaomi_whyred -b tango_44 vendor/xiaomi/whyred
+git clone --depth=1 https://${PAT_KEY}@github.com/chaldeaprjkt/vendor_xiaomi_whyred -b tango_44 vendor/xiaomi
 git clone --depth=1 https://github.com/Mocaness/device_xiaomi_whyred-kernel -b t44 device/xiaomi/whyred-kernel
 git clone --depth=1 https://${PAT_KEY}@github.com/Mocaness/keys-dev -b master certs
 git clone --depth=1 https://${PAT_KEY}@github.com/Mocaness/vendor_scrapyard -b 13 vendor/scrapyard
