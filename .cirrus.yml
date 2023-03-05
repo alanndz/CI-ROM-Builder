@@ -18,7 +18,7 @@ task:
     cpu: 8
     memory: 32G
 
-  Memuat-ccache_background_script:
+  Memuat-ccache_script:
      - ./script/load_ccache.sh
 
   Repo-pribadi_script:
