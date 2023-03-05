@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+name_rom=$(grep init $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d / -f 4)
+device=$(grep lunch $CIRRUS_WORKING_DIR/build.sh -m 1 | cut -d ' ' -f 3)
+
 function upload_ccache() {
 cd $WORKDIR
 com ()
