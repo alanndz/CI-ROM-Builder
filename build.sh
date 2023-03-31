@@ -12,6 +12,6 @@ chmod +x barom.sh
 ./barom.sh -t ${TG_CHAT_ID} ${TG_TOKEN}
 ./barom.sh --ccache-dir "${WORKDIR}/ccache" --ccache-size 20G
 ./barom.sh --device vayu --lunch vayu-user
-./barom.sh -b -j 8 -u wet --timer 85m -- m dudu
+./barom.sh -b -j 8 -u fio --timer 85m -- m dudu
 
 # end
