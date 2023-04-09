@@ -7,5 +7,6 @@ command=$(tail $CIRRUS_WORKING_DIR/build.sh -n +$(expr $(grep '# build rom' $CIR
 cd $WORKDIR/rom/$name_rom
 curl -Lo barom.sh https://raw.githubusercontent.com/alanndz/barom/main/barom.sh
 chmod +x barom.sh
+./barom.sh -n ${name_rom}
 export CCACHE_COMPRESS=true
 bash -c "$command" || true
