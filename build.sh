@@ -10,6 +10,6 @@ git clone --depth=1 https://${PAT_KEY}@github.com/alanndz/certs -b main certs
 ./barom.sh -t ${TG_CHAT_ID} ${TG_TOKEN}
 ./barom.sh --ccache-dir "${WORKDIR}/ccache" --ccache-size 20G
 ./barom.sh --device vayu --lunch vayu-user
-./barom.sh -b -j 8 -u gof --timer 95m -- m dudu
+./barom.sh -b -j 8 -u wet --timer 95m -- m dudu
 
 # end
