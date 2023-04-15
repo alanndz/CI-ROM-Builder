@@ -18,9 +18,6 @@ task:
     cpu: 8
     memory: 32G
 
-  Memasang-dep_script:
-     - sudo apt install -y expect
-
   Memuat-ccache_script:
      - ./script/load_ccache.sh
 
