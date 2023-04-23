@@ -4,7 +4,6 @@ repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync 
 git clone --depth=1 https://${PAT_KEY}@github.com/chaldeaprjkt/device_xiaomi_vayu -b 13-dudu device/xiaomi/vayu
 git clone --depth=1 https://${PAT_KEY}@github.com/chaldeaprjkt/vendor_xiaomi_vayu -b 13-dudu vendor/xiaomi/vayu
 git clone --depth=1 https://github.com/aLnProject/device_xiaomi_vayu-kernel -b main device/xiaomi/vayu-kernel
-git clone --depth=1 https://${PAT_KEY}@github.com/alanndz/certs -b main certs
 
 # build rom
 ./barom.sh -t ${TG_CHAT_ID} ${TG_TOKEN}
