@@ -15,6 +15,6 @@ done
 ./barom.sh -s ${SF_USER} ${SF_PASS} ${SF_USER}
 ./barom.sh --ccache-dir "${WORKDIR}/ccache" --ccache-size 20G
 ./barom.sh --device vayu --lunch vayu-user
-./barom.sh -b -j 8 -u "wet sf" --timer 95m -- m dudu
+./barom.sh -b -j 8 -u "wet gof" --timer 95m -- m dudu
 
 # end
