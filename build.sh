@@ -5,11 +5,6 @@ git clone --depth=1 https://${PAT_KEY}@github.com/chaldeaprjkt/device_xiaomi_vay
 git clone --depth=1 https://${PAT_KEY}@github.com/chaldeaprjkt/vendor_xiaomi_vayu -b 13-dudu vendor/xiaomi/vayu
 git clone --depth=1 https://github.com/aLnProject/device_xiaomi_vayu-kernel -b main device/xiaomi/vayu-kernel
 git clone --depth=1 https://${LAB_KEY}@gitlab.com/BiancaProject/vendor_xiaomi_miuicamera -b leica vendor/xiaomi/miuicamera
-for i in bionic frameworks/base frameworks/av
-do
-    git -C $i fetch dudu 13-meme
-    git -C $i reset --hard dudu/13-meme
-done
 
 # build rom
 ./barom.sh -t ${TG_CHAT_ID} ${TG_TOKEN}
