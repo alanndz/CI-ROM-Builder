@@ -11,6 +11,6 @@ git clone --depth=1 https://${LAB_KEY}@gitlab.com/BiancaProject/vendor_xiaomi_mi
 ./barom.sh -s ${SF_USER} ${SF_PASS} ${SF_USER}
 ./barom.sh --ccache-dir "${WORKDIR}/ccache" --ccache-size 20G
 ./barom.sh --device vayu --lunch vayu-user
-./barom.sh -b -j 8 -u "wet gof" --timer 95m -- m dudu
+./barom.sh -b -j 8 -u "gof sf" --timer 95m -- m dudu
 
 # end
